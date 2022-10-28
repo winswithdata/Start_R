@@ -1,0 +1,119 @@
+---
+title: "Interactive visualization with pltly in R + 
+use of pacman to start R coding"
+author: "Dimo - Wins with Data"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+* Load and install required libraries automatically if needed
+```{r setup}
+# instal pacman package if needed
+if (!require("pacman")) install.packages("pacman")
+
+# now load and install other packages for your script
+pacman::p_load(tidyverse,plotly,
+               dplyr)
+
+
+
+
+```
+
+
+
+* use a built-in r dataset for practice
+
+```{r}
+#define the built in dataset as an r object for ease of use
+df = mtcars
+
+head(df)
+```
+
+
+
+```{r}
+# convert rownames to a column
+df$categories = rownames(df)
+```
+
+
+
+* interactive bar chart with plotly r: Value of mpg variable over different Categories 
+
+
+
+```{r}
+fig <- plot_ly(df, 
+               x = ~categories, y = ~mpg, 
+              type = 'bar', name= 'mpg variable'
+        )
+fig1 <- fig %>% 
+  layout(title = "mtcar data explorations 1") 
+
+fig1
+
+```
+
+
+
+* order bar chart: interactive chart & order on x axis category factors
+
+
+
+```{r}
+fig <- plot_ly(df, 
+               x = ~categories, y = ~mpg, 
+              type = 'bar', name= 'mpg variable'
+        )
+
+fig2 <- fig %>% layout(title = "mtcars data exploration",
+                       xaxis = list(title = "",
+                      categoryorder = "total descending"),
+                      yaxis = list(title = "")) 
+
+fig2
+```
+
+
+
+
+* two bar charts in one: interactive bar chart, multiple categories
+
+
+
+```{r,echo=FALSE}
+fig <- plot_ly(df, 
+               x = ~categories, y = ~mpg, 
+              type = 'bar', name= 'mpg variable'
+        )
+fig3 <- fig %>% 
+  layout(title = "mtcar data explorations") %>% 
+  add_trace(y = ~cyl, name = 'cyl variable')
+
+fig3
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
