@@ -1,0 +1,33 @@
+---
+title: "Tutorial loading R libraries automatically 
+ + Interactive visualization"
+author: "Dimo - Wins with Data"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+* Load and install required libraries automatically if needed
+```{r setup}
+# Start your r codes like this for easier collaboration between teammates and no hassle installation or load of packages
+
+# instal pacman package if needed
+if (!require("pacman")) install.packages("pacman")
+
+# now load and install other packages for your script
+pacman::p_load(tidyverse,plotly,
+               dplyr, iris)
+
+
+
+```
+
+
+
+```{r}
+
+#let's test it
+
+head(iris)
+```
+```
+
